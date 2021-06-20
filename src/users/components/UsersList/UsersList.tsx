@@ -1,19 +1,29 @@
 import React from 'react';
 
 import UserItem from '../UserItem/UserItem';
+import User from '../../../modals/User';
+import './UsersList.css'
 
-const UsersList = ({items = []}) => {
-    if(items.length == 0) {
+class UserListProps{
+    items: User[];
+
+    constructor(){
+        this.items = [];
+    }
+}
+
+const UsersList = (props : UserListProps) => {
+    if(props.items.length === 0) {
         return <div className="center">No users found!</div>
     } else {
         return <ul className="users-list">
             {
-                items.map(user => 
+                props.items.map((user : User) => 
                     <UserItem   key={user.id}
                                 id={user.id}
-                                image={user.image}
+                                img={user.img}
                                 name={user.name}
-                                placesCount={user.placesCount}/>
+                                placeCount={user.placeCount}/>
                 )
             }
         </ul>
