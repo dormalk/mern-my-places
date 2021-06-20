@@ -2,6 +2,7 @@ import React from 'react';
 
 import UserItem from '../UserItem/UserItem';
 import User from '../../../modals/User';
+import { Card } from '../../../shared/components/UIElements';
 import './UsersList.css'
 
 class UserListProps{
@@ -14,7 +15,11 @@ class UserListProps{
 
 const UsersList = (props : UserListProps) => {
     if(props.items.length === 0) {
-        return <div className="center">No users found!</div>
+        return <div className="center">
+            <Card>
+                No users found!
+            </Card>
+        </div>
     } else {
         return <ul className="users-list">
             {

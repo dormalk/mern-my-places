@@ -5,7 +5,7 @@ import './Card.css';
 class CardProps {
   className?: string;
   style?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
-  children?: ReactElement<any,any>;
+  children?: ReactElement<any,any> | string;
 
   constructor(){
     this.className = '';
