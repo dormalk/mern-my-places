@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch,Route,Redirect } from 'react-router-dom
 import Users from './users/pages/Users';
 import NewPlace from './places/pages/newPlace';
 
+
+
 const App = () => {
   return (
     <Router>
