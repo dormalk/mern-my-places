@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import ReactDOM from 'react-dom';
 import './SideDrawer.css';
 
 class SideDrawerProps {
@@ -6,9 +7,11 @@ class SideDrawerProps {
 }
 
 const SideDrawer = (props:SideDrawerProps) => {
-    return <aside className="side-drawer">
+    const content = <aside className="side-drawer">
         {props.children}
     </aside>
+
+    return ReactDOM.createPortal(content,document.getElementById('side-drawer-hook')!);
 }
 
 export default SideDrawer;
