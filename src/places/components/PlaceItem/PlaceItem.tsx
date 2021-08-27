@@ -1,5 +1,6 @@
 import React from 'react';
 import Place from '../../../modals/Place';
+import { Button } from '../../../shared/components/FormElements';
 import { Card } from '../../../shared/components/UIElements';
 import './PlaceItem.css';
 
@@ -10,7 +11,7 @@ class PlaceItemProps{
 
 const PlaceItem = ({place} : PlaceItemProps) => {
     return  <li className="place-item">
-                <Card>
+                <Card className="place-item__content">
                     <div className="place-item__image">
                         <img src={place.imageUrl} alt={place.title}></img>
                     </div>
@@ -20,9 +21,9 @@ const PlaceItem = ({place} : PlaceItemProps) => {
                         <p>{place.description}</p>
                     </div>
                     <div className="place-item__actions">
-                        <button>VIEW ON MAP</button>
-                        <button>EDIT</button>
-                        <button>DELETE</button>
+                        <Button inverse>VIEW ON MAP</Button>
+                        <Button to={`/places/${place.id}`}>EDIT</Button>
+                        <Button danger>DELETE</Button>
                     </div>
                 </Card>
             </li>
