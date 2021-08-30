@@ -2,8 +2,13 @@ import React, { DetailedHTMLProps, FormEventHandler, HTMLAttributes, MouseEventH
 import './Modal.css'
 import Backdrop from '../Backdrop/Backdrop';
 import ReactDOM from 'react-dom';
+import { CSSTransition } from 'react-transition-group';
 
-class ModalOverlayProp {
+class ModalProps{
+    show?: boolean;
+    onCancle?: MouseEventHandler<HTMLDivElement> | undefined;
+}
+class ModalOverlayProp extends ModalProps{
     className?: string;
     style?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
     headerClass?: string;
@@ -18,7 +23,7 @@ class ModalOverlayProp {
 
 const ModalOverlay = (props: ModalOverlayProp) => {
     const content = (<div className={`modal ${props.className}`} style={props.style}>
-        <header className={`modal_header ${props.headerClass}`}>
+        <header className={`modal__header ${props.headerClass}`}>
             <h2>{props.header}</h2>
         </header>
         <form onSubmit={props.onSubmit ? props.onSubmit : event => event.preventDefault()}>
@@ -33,14 +38,19 @@ const ModalOverlay = (props: ModalOverlayProp) => {
     return ReactDOM.createPortal(content, document.getElementById('modal-hook')!)
 }
 
-class ModalProps {
-    show?: boolean;
-    onClick?: MouseEventHandler<HTMLDivElement> | undefined;
-}
 
-const Modal = (props:ModalProps) => {
+const Modal = (props:ModalOverlayProp) => {
     return <React.Fragment>
-        {props.show && <Backdrop onClick={props.onClick}/>}
+        {props.show && <Backdrop onClick={props.onCancle}/>}
+        <CSSTransition
+            in={props.show}
+            mountOnEnter
+            unmountOnExit
+            timeout={200}
+            classNames="modal"
+        >
+            <ModalOverlay {...props}/>
+        </CSSTransition>
     </React.Fragment>
 }
 
