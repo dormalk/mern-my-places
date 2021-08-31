@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import Place from '../../../modals/Place';
 import { Button } from '../../../shared/components/FormElements';
-import { Card, Modal } from '../../../shared/components/UIElements';
+import { Card, Modal,Map } from '../../../shared/components/UIElements';
 import './PlaceItem.css';
-
 
 class PlaceItemProps{
     place!: Place;    
@@ -25,7 +24,7 @@ const PlaceItem = ({place} : PlaceItemProps) => {
                     footerClass="place-item__modal-actions"
                     footer={<Button onClick={closeMapHandler}>CLOSE</Button>}>
                 <div className="map-container">
-                    <h2>The Map</h2>
+                    <Map center={place.location} zoom={16}/>
                 </div>
             </Modal>
             <li className="place-item">
