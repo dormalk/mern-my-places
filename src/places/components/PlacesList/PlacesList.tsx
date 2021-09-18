@@ -3,7 +3,7 @@ import Place from "../../../modals/Place";
 import { Card } from "../../../shared/components/UIElements";
 import PlaceItem from "../PlaceItem/PlaceItem";
 import './PlacesList.css';
-
+import { Button } from '../../../shared/components/FormElements'
 class PlacesListProps {
     items: Array<Place> = []
 }
@@ -13,7 +13,7 @@ const PlacesList = (props:PlacesListProps) => {
         return <div className="place-list center">
             <Card>
                 <h2>No places found. Maybe create one?</h2>
-                <button>Shere Place</button>
+                <Button>Shere Place</Button>
             </Card>
         </div>
     }
